@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Wisielec!</title>
+</head>
+<body>
+    <h1>Wisielec!</h1>
+
+    <script>
+    // Tworzymy nową tablicę słów
+    var slowa = [
+      "javascript",
+      "małpa",
+      "niesamowity",
+      "ciastko"
+    ];
+
+    // Losujemy słowo
+    var slowo = slowa[Math.floor(Math.random() * slowa.length)];
+
+    // Ustawiamy tablicę dla odpowiedzi
+    var odpowiedzi = [];
+    for (var i = 0; i < slowo.length; i++) {
+      odpowiedzi[i] = "_";
+    }
+
+    var wymaganeLitery = slowo.length;
+
+    // Pętla gry
+    while (wymaganeLitery > 0) {
+      // Pokazuj graczowi jego postęp
+      alert(odpowiedzi.join(" "));
+
+      // Pobierz odpowiedź od gracza
+      var odpowiedz = prompt("Podaj literę, lub naciśnij Anuluj aby przerwać grę.");
+      if (odpowiedz === null) {
+        // Wyjdź z pętli
+        break;
+      } else if (odpowiedz.length !== 1) {
+        alert("Proszę wprowadzić pojedyńczą literę.");
+      } else {
+        // W innym przypadku zaktualizuj stan gry
+        for (var j = 0; j < slowo.length; j++) {
+          if (slowo[j] === odpowiedz) {
+            odpowiedzi[j] = odpowiedz;
+            wymaganeLitery--;
+          }
+        }
+      }
+
+    // Koniec pętli gry
+    }
+
+    // Pokaż odpoiwedź i pogratuluj graczowi
+    alert(odpowiedzi.join(" "));
+    alert("Bardzo dobrze! Odpowiedź to: " + slowo);
+    </script>
+</body>
+</html>
