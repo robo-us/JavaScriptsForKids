@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Lekcja 9 - Zabawa z DOM</title>
+</head>
+
+<body>
+    <h1 id="glowny-naglowek">Witaj Świecie!</h1>
+
+    <script>
+		var elementNaglowka = document.getElementById("glowny-naglowek");
+		console.log(elementNaglowka.innerHTML);
+		var nowyTekstNaglowka = prompt("Proszę wpisać nowy nagłówek:");
+		elementNaglowka.innerHTML = nowyTekstNaglowka;
+      </script>
+  </body>
+  </html>
