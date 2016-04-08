@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Programowanie Interaktywne</title>
+</head>
+
+<body>
+    <h1 id="naglowek">Witaj świecie!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+    <script>
+    $("html").mousemove(function (zdarzenie) {
+		$("#naglowek").offset( {
+			left: zdarzenie.pageX,
+			top: zdarzenie.pageY
+		});
+	});
+	</script>
+</body>
+</html>
