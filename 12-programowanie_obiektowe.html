@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Programowanie zorientowane obiektowo</title>
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+	
+	<script>
+	//funckja która będzie dodawała inne współrzędne każdemu samochodowi
+	var Auto = function (x, y) {
+		this.x = x;
+		this.y = y;
+		};
+	
+	var rysujAuto = function (auto) {
+		//tutaj tworzymy zmienną przechowującą element HTML z obrazkiem
+		var autoHtml = '<img src="http://robo-us.pl/images/programista/auto.png">';
+		//tutaj zamieniamy element HTML na potrzeby jQuery do zmiennej
+		var autoElement = $(autoHtml);
+		//w tym miejscu wykorzystamy css do ustawienia pozycji rysunku
+		//używamy css'a ponieważ offset do rysowania wielu obiektów nie najlepiej się nadaje
+		autoElement.css({
+			position: "absolute",
+			left: auto.x,
+			top: auto.y
+		});
+		//w końcu z wykorzystaniem jQuery dodajemy autoElement do elementu body strony
+		$("body").append(autoElement);
+	};
+   
+	//dwa konstruktory i funkcji z nowymi obiektami
+	var maluch = new Auto(20, 20);
+	var syrenka = new Auto(100, 200);
+
+	rysujAuto(maluch);
+	rysujAuto(syrenka);
+	
+	</script>
+</body>
+</html>
