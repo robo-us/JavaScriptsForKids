@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wyzwania!!!</title>
+</head>
+
+<body>
+    <p>Wyzwanie 2, które polega na tyma aby napis poruszał się po obrębie kwadratu,<br/>kwadrat zrobiłem trochę większy i bardziej odsunięty od krawędzie aby był czytelniejszy</p>
+	<h1 id="naglowek">Wyzwanie 2</h1>
+
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+    <script>
+		ruchNaglowkaLeft = 100;
+		ruchNaglowkaTop = 100;
+		var wyzwanie2 = function () {
+			if (ruchNaglowkaLeft < 400 && ruchNaglowkaTop == 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaLeft++;
+			}
+			else if (ruchNaglowkaLeft == 400 && ruchNaglowkaTop < 400) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaTop++;
+			}
+			else if (ruchNaglowkaTop == 400 && ruchNaglowkaLeft > 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaLeft--;
+			}
+			else if (ruchNaglowkaLeft == 100 && ruchNaglowkaTop > 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaTop--;
+			}
+			
+		}
+		
+		setInterval(wyzwanie2, 10);
+	</script>
+</body>
+</html>

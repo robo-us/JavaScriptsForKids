@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wyzwania!!!</title>
+</head>
+
+<body>
+    <p>Nagłówek przemieszcza się tam gdzie klikniemy w obrębie strony</p>
+	<h1 id="naglowek">Wyzwanie 1</h1>
+
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+    <script>
+		var wyzwanie1 = function (zdarzenie) {
+			$("#naglowek").offset({left: zdarzenie.pageX, top: zdarzenie.pageY});
+		}
+		$("html").click(wyzwanie1);
+	</script>
+</body>
+</html>

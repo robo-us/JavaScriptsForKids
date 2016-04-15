@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wyzwania!!!</title>
+</head>
+
+<body>
+    <p>Wyzwanie 4, które polega na tyma aby napis poruszał się po obrębie kwadratu,<br/>przy każdym kliknięciu będzie przyśpieszał aż zdobędziesz 10 pkt</p>
+	<h1 id="naglowek">Wyzwanie 4</h1>
+	<p id="punkty"></p>
+	
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+    <script>
+		ruchNaglowkaLeft = 100;
+		ruchNaglowkaTop = 100;
+		punkty = 0;
+		predkosc = 10;
+		var wyzwanie2 = function () {
+			if (ruchNaglowkaLeft < 400 && ruchNaglowkaTop == 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaLeft++;
+			}
+			else if (ruchNaglowkaLeft == 400 && ruchNaglowkaTop < 400) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaTop++;
+			}
+			else if (ruchNaglowkaTop == 400 && ruchNaglowkaLeft > 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaLeft--;
+			}
+			else if (ruchNaglowkaLeft == 100 && ruchNaglowkaTop > 100) {
+			$("#naglowek").offset({ left: ruchNaglowkaLeft, top: ruchNaglowkaTop });
+			ruchNaglowkaTop--;
+			}
+			
+		}
+		var idNumerJeden = setInterval(wyzwanie2, predkosc);
+		
+		$("#punkty").offset({ left: 100, top: 600});
+		
+		var kliknij = function () {
+			++punkty;
+			--predkosc;
+			if (punkty < 10) {
+				clearInterval(idNumerJeden);
+				idNumerJeden = setInterval(wyzwanie2, predkosc);
+				$("#punkty").text("Zdobyłeś : " + punkty + " pkt");
+				}
+			else {
+				clearInterval(idNumerJeden);
+				$("#punkty").text("Zdobyłeś : 10 pkt");
+				$("#naglowek").text("WYGRAŁEŚ!!!");
+				}				
+		}
+		
+		$("#naglowek").click(kliknij);
+		
+		</script>
+</body>
+</html>
