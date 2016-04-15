@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Odszukaj zakopany skarb!</title>
+</head>
+
+<body>
+	<h1 id="naglowek">Odszukaj zakopany skarb! - Wyzwanie 4</h1>
+	<img id="mapa" width=400 height=400 src="mapa.png">
+	<p id="odleglosc"></p>
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+	<script>
+	  
+	//Wylosuj liczbę od 0 do rozmiaru planszy
+	var wylosujLiczbe = function (rozmiar) {
+		return Math.floor(Math.random() * rozmiar);
+	};
+	
+	//Wylicz odległość pomiędzy klinięciem a ukrytym skarbem
+	var zmierzOdleglosc = function (zdarzenie, cel) {
+		var roznicaX = zdarzenie.offsetX - cel.x;
+		var roznicaY = zdarzenie.offsetY - cel.y;
+		return Math.sqrt((roznicaX * roznicaX) + (roznicaY * roznicaY));
+	};
+	
+	//Ustaw napis odpowiedni w zależności od odległości
+	var odlegloscDoCelu = function (odleglosc) {
+		if (odleglosc < 10) {
+		return "Parzy!";
+		} else if (odleglosc < 20) {
+		return "Naprawdę gorąco";
+		} else if (odleglosc < 40) {
+		return "Gorąco";
+		} else if (odleglosc < 80) {
+		return "Ciepło";
+		} else if (odleglosc < 160) {
+		return "Zimno";
+		} else if (odleglosc < 320) {
+		return "Naprawdę zimno";
+		} else {
+		return "Lodowato!";
+		}
+	};
+	
+	//Ustawiamy zmienne wykorzystane w programie
+	var szerokosc = 400;
+	var wysokosc = 400;
+	var klikniecia = 0;
+	var limit = 20;
+	
+	//Tworzymy losowe położenie skarbu	
+	var cel = {
+		x: wylosujLiczbe(szerokosc),
+		y: wylosujLiczbe(wysokosc)
+	};
+	  
+	//Dodajemy obsługę kliknięcia w mapę
+	$("#mapa").click(function (zdarzenie) {
+		klikniecia++;
+		//Pobierz odległość pomiędzy kliknięciem a ukrytym celem
+		var odleglosc = zmierzOdleglosc(zdarzenie, cel);
+		//Pobierz komunikat odległości
+		var odlegloscTraf = odlegloscDoCelu(odleglosc);
+		//Zaktualizuj wynik w elemecie o identyfikatorze #odleglosc
+		$("#odleglosc").text(odlegloscTraf);
+		$("#odleglosc").append("<br/>To twój " + klikniecia + " klik. Zostało Ci jeszcze " + (limit - klikniecia));
+	
+		//Jeśli odległość jest w pobliżu 8, powiedz użytkownikowi że wygrał
+		if (odleglosc < 8) {
+			alert("Odnalazłaś/eś skarb kliając " + klikniecia + " razy!");
+			$("#odleglosc").append("<br/>Przeładuj stronę");
+			}
+		else if ((limit - klikniecia) == 0) {
+			alert("Niestety osiągnąłaś/eś limit kliknięć i przegrałaś/eś");
+			$("#odleglosc").append("<br/>Przeładuj stronę");
+			}
+	});
+	</script>
+</body>
+</html>
