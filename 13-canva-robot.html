@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - kwadraty</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		ctx.fillRect(100, 0, 50, 50);	//głowa
+		ctx.fillRect(120, 50, 10, 20);	//szyja
+		ctx.fillRect(60, 70, 130, 10);	//ramiona
+		ctx.fillRect(90, 80, 70, 70);	//brzuszek
+		ctx.fillRect(90, 150, 10, 40);	//noga lewa
+		ctx.fillRect(150, 150, 10, 40);	//noga prawa
+	</script>
+</body>
+</html>

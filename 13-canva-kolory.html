@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - kwadraty</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		ctx.fillStyle = "Red";
+		ctx.fillRect(0, 0, 50, 100);	//pierwszy prostokąt
+		ctx.fillStyle = "Green";
+		ctx.fillRect(50, 0, 50, 100);	//drugi prostokąt
+		ctx.fillStyle = "Blue";
+		ctx.fillRect(100, 0, 50, 100);	//trzeci prostokąt
+	</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - szablon</title>
+</head>
+
+<body>
+	<canvas id = "canva" width = "200" height = "200"></canvas>
+
+	<script>
+	var canva = document.getElementById("canva");
+	var ctx = canva.getContext("2d");
+	ctx.lineWidth = 4;
+	ctx.strokeRect(50, 5 , 20, 20); //glowka
+	ctx.beginPath();				//tułów
+	ctx.moveTo(60, 25);
+	ctx.lineTo(60, 75);
+	ctx.stroke();
+	ctx.beginPath();				//rączka1
+	ctx.moveTo(40, 35);
+	ctx.lineTo(60, 55);
+	ctx.stroke();
+	ctx.beginPath();				//rączka2
+	ctx.moveTo(80, 35);
+	ctx.lineTo(60, 55);
+	ctx.stroke();
+	ctx.beginPath();				//nóżka1
+	ctx.moveTo(60, 75);
+	ctx.lineTo(40, 95);
+	ctx.stroke();
+	ctx.beginPath();				//nóżka2
+	ctx.moveTo(60, 75);
+	ctx.lineTo(80, 95);
+	ctx.stroke();
+	</script>
+
+</body>
+</html>

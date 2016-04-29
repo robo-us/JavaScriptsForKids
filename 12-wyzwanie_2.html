@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Programowanie zorientowane obiektowo - Wyzwanie 1</title>
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+	
+	<script>
+	//funckja która będzie dodawała inne współrzędne każdemu samochodowi
+	
+	var Auto = function (x, y, p) {
+		this.x = x;
+		this.y = y;
+		this.rysuj();	
+		this.p = p;		// tutaj dopisujemy o ile ma sie przesuwac obiekt
+		};
+	
+	Auto.prototype.rysuj = function () {
+		var autoHtml = '<img src="http://robo-us.pl/images/programista/auto.png">';
+		
+		this.autoElement = $(autoHtml);
+		
+		this.autoElement.css({
+			position: "absolute",
+			left: this.x,
+			top: this.y
+		});
+		
+		$("body").append(this.autoElement);
+	};
+	
+	//tutaj jest metetoda poruszająca samochód w prawo
+	Auto.prototype.ruchPrawo = function (p) {
+		this.x += this.p;
+		
+		this.autoElement.css({
+			left: this.x,
+			top: this.y
+		});
+	};
+	
+	//ruch w lewo
+	Auto.prototype.ruchLewo = function (p) {
+		this.x -= p;
+		
+		this.autoElement.css({
+			left: this.x,
+			top: this.y
+		});
+	};
+	
+	//ruch w górę
+	Auto.prototype.ruchGora = function (p) {
+		this.y -= p;
+		
+		this.autoElement.css({
+			left: this.x,
+			top: this.y
+		});
+	};
+	
+	//ruch w dół
+	Auto.prototype.ruchDol = function (p) {
+		this.y += p;
+		
+		this.autoElement.css({
+			left: this.x,
+			top: this.y
+		});
+	};
+	
+	var maluch = new Auto(20, 20, 5);
+	var syrenka = new Auto(100, 200, 5);
+	
+	//maluch.rysuj();
+	//syrenka.rysuj();
+	
+	</script>
+</body>
+</html>
