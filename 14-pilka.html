@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Odbijająca się piłka</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		
+		var Pilka = function () {
+			this.x = 100;
+			this.y = 100;
+			this.xPredkosc = -2;
+			this.yPredkosc = 3;
+		};
+		
+		var okrag = function (x, y, promien, wypelnijOkrag) {
+			ctx.beginPath();
+			ctx.arc(x, y, promien, 0, Math.PI * 2, false);
+			if (wypelnijOkrag) {
+				ctx.fill();
+			} else {
+				ctx.stroke();
+			}
+		};
+		
+		Pilka.prototype.rysuj = function () {
+			okrag(this.x, this.y, 3, true);
+		};
+
+		Pilka.prototype.ruch = function () {
+			this.x += this.xPredkosc;
+			this.y += this.yPredkosc;
+		};
+		
+		Pilka.prototype.sprawdzKolizje = function () {
+			if (this.x < 0 || this.x > 200) {
+				this.xPredkosc = -this.xPredkosc;
+			}
+			if (this.y < 0 || this.y > 200) {
+				this.yPredkosc = -this.yPredkosc;
+			}
+		};
+		
+		var pilka = new Pilka();
+		
+		setInterval(function () {
+			ctx.clearRect(0, 0, 200, 200);
+			pilka.rysuj();
+			pilka.ruch();
+			pilka.sprawdzKolizje();
+			ctx.strokeRect(0, 0, 200, 200)
+		}, 30);
+	</script>
+</body>
+</html>

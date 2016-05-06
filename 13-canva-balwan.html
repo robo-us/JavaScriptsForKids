@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - bałwan</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		
+		//funkcja do rysowania koła
+		var okrag = function (x, y, promien, wypelnijOkrag) {
+			ctx.beginPath();
+			ctx.arc(x, y, promien, 0, Math.PI * 2, false);
+			if (wypelnijOkrag == true) {
+			ctx.fill();
+			} else {
+			ctx.stroke();
+			};
+		};
+		
+		ctx.lineWidth = 2;
+		//ctx.strokeStyle = "Red";
+		okrag(100, 70, 30, false);
+		okrag(100, 140, 40, false);
+		okrag(100, 120, 4, true);
+		okrag(100, 140, 4, true);
+		okrag(100, 160, 4, true);
+		okrag(90, 60, 4, true);
+		okrag(110, 60, 4, true);
+		ctx.fillStyle = "Orange";
+		okrag(100, 70, 4, true);
+		
+		
+	</script>
+</body>
+</html>

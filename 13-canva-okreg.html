@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - okręg</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		
+		//funkcja do rysowania koła
+		var okrag = function (x, y, promien) {
+			ctx.beginPath();
+			ctx.arc(x, y, promien, 0, Math.PI * 2, false);
+			ctx.stroke();
+		};
+		
+		ctx.lineWidth = 4;
+		
+		ctx.strokeStyle = "Red";
+		okrag(100, 100, 10);
+		
+		ctx.strokeStyle = "Orange";
+		okrag(100, 100, 20);
+
+		ctx.strokeStyle = "Yellow";
+		okrag(100, 100, 30);
+
+		ctx.strokeStyle = "Green";
+		okrag(100, 100, 40);
+
+		ctx.strokeStyle = "Blue";
+		okrag(100, 100, 50);
+
+		ctx.strokeStyle = "Purple";
+		okrag(100, 100, 60);
+	</script>
+</body>
+</html>

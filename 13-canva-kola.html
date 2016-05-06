@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    var okr¹g = function (x, y, promieñ) {
+      kontekst.beginPath();
+      kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+      kontekst.stroke();
+    };
+
+    kontekst.lineWidth = 4;
+    kontekst.strokeStyle = "Red";
+    okr¹g(100, 100, 10);
+    kontekst.strokeStyle = "Orange";
+    okr¹g(100, 100, 20);
+    kontekst.strokeStyle = "Yellow";
+    okr¹g(100, 100, 30);
+    kontekst.strokeStyle = "Green";
+    okr¹g(100, 100, 40);
+    kontekst.strokeStyle = "Blue";
+    okr¹g(100, 100, 50);
+    kontekst.strokeStyle = "Purple";
+    okr¹g(100, 100, 60);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Canva - ruchomy kwadraty</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		
+		var rozmiar = 0;
+		
+		setInterval(function () {
+			ctx.clearRect(0, 0, 200, 200);
+			ctx.fillRect(0, 0, rozmiar, rozmiar);
+			rozmiar++;
+			if (rozmiar > 200) {
+				rozmiar = 0;
+				};
+		}, 30);
+		
+	</script>
+</body>
+</html>

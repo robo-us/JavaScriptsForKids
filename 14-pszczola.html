@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Latająca pszczoła</title>
+</head>
+
+<body>
+	<canvas id="canva" width="200" height="200"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+				
+		var okrag = function (x, y, promien, wypelnijOkrag) {
+			ctx.beginPath();
+			ctx.arc(x, y, promien, 0, Math.PI * 2, false);
+			if (wypelnijOkrag) {
+				ctx.fill();
+			} else {
+				ctx.stroke();
+			}
+		};
+		
+		var rysujPszczole = function (x, y) {
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = "Black";
+			ctx.fillStyle = "Gold";
+
+			okrag(x, y, 8, true);
+			okrag(x, y, 8, false);
+			okrag(x - 5, y - 11, 5, false);
+			okrag(x + 5, y - 11, 5, false);
+			okrag(x - 2, y - 1, 2, false);
+			okrag(x + 2, y - 1, 2, false);
+		};
+
+		var zmiana = function (wspolrzedne) {
+			var offset = Math.random() * 4 - 2;
+			wspolrzedne += offset;
+
+			if (wspolrzedne > 200) {
+				wspolrzedne = 200;
+			}
+			if (wspolrzedne < 0) {
+				wspolrzedne = 0;
+			}
+
+		return wspolrzedne;
+		};
+		
+		var x = 100;
+		var y = 100;
+		
+		setInterval(function () {
+			ctx.clearRect(0, 0, 200, 200);
+			rysujPszczole(x, y);
+			x = zmiana(x);
+			y = zmiana(y);
+			ctx.strokeRect(0, 0, 200, 200);
+  }, 30);
+  
+	</script>
+</body>
+</html>
