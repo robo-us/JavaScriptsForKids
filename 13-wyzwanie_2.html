@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    var rysujPunkty = function (punkty) {
+      kontekst.beginPath();
+      kontekst.moveTo(punkty[0][0], punkty[0][1]);
+      for (var i = 1; i < punkty.length; i++) {
+        kontekst.lineTo(punkty[i][0], punkty[i][1]);
+      }
+      kontekst.stroke();
+    };
+
+    var tajemniczePunkty = [[50, 50], [50, 100], [25, 120], [100, 50], [70, 90], [100, 90], [70, 120]];
+    rysujPunkty(tajemniczePunkty);
+    </script>
+</body>
+</html>

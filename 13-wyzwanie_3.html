@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+      kontekst.beginPath();
+      kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+      if (wype³nijOkr±g) {
+        kontekst.fill();
+      } else {
+        kontekst.stroke();
+      }
+    };
+
+    $('canvas').mousemove(function (zdarzenie) {
+      okr±g(zdarzenie.offsetX, zdarzenie.offsetY, 3, true);
+    });
+    </script>
+</body>
+</html>
+

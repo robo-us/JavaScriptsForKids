@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+      kontekst.beginPath();
+      kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+      if (wype³nijOkr±g) {
+        kontekst.fill();
+      } else {
+        kontekst.stroke();
+      }
+    };
+
+    var rysujBa³wana = function (x, y) {
+      kontekst.fillStyle = "Black";
+      kontekst.lineWidth = 4;
+
+      okr±g(x + 50, y + 110, 40, false);
+      okr±g(x + 50, y + 40, 30, false);
+      okr±g(x + 40, y + 35, 5, true);
+      okr±g(x + 60, y + 35, 5, true);
+
+      okr±g(x + 50, y + 90, 5, true);
+      okr±g(x + 50, y + 110, 5, true);
+      okr±g(x + 50, y + 130, 5, true);
+
+      kontekst.fillStyle = "Orange";
+      okr±g(x + 50, y + 45, 5, true);
+    };
+
+    rysujBa³wana(0, 0);
+    rysujBa³wana(100, 20);
+    </script>
+</body>
+</html>

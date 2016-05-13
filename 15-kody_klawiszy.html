@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Wyświetlanie kodów na konsoli</title>
+</head>
+<body>
+	<p>Kliknij na stronie aby widać było w konsoli klawisze</p>
+    <canvas id="canva" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script>
+  $("body").keydown(function (event) {
+  console.log(event.keyCode);
+});
+    </script>
+</body>
+</html>

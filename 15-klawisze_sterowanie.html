@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Sterowanie obiektem za pomocą klawiszy</title>
+</head>
+
+<body>
+    <canvas id="canva" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+
+    <script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		var szerokość = canva.width;
+		var wysokość = canva.height;
+		var okrąg = function (x, y, promień, wypełnijOkręg) {
+			ctx.beginPath();
+			ctx.arc(x, y, promień, 0, Math.PI * 2, false);
+			if (wypełnijOkręg) {
+				ctx.fill();
+			} else {
+				ctx.stroke();
+			}
+		};
+
+// Konstruktor Piłka
+
+		var Piłka = function () {
+			this.x = szerokość / 2;
+			this.y = wysokość / 2;
+			this.xSzybkość = 5;
+			this.ySzybkość = 0;
+		};
+
+// Aktualizuj pozycję piłki na podstawie jej szybkości
+		Piłka.prototype.przesuwaj = function () {
+			this.x += this.xSzybkość;
+			this.y += this.ySzybkość;
+
+			if (this.x < 0) {
+				this.x = szerokość;
+			} else if (this.x > szerokość) {
+				this.x = 0;
+			} else if (this.y < 0) {
+				this.y = wysokość;
+			} else if (this.y > wysokość) {
+				this.y = 0;
+			}
+		};
+
+// Narysuj piłkę w jej bieżącej pozycji
+	Piłka.prototype.rysuj = function () {
+		okrąg(this.x, this.y, 10, true);
+	};
+
+// Ustaw kierunek piłki na podstawie łańcucha
+	Piłka.prototype.ustawKierunek = function (kierunek) {
+		if (kierunek === "góra") {
+			this.xSzybkość = 0;
+			this.ySzybkość = -5;
+		} else if (kierunek === "dół") {
+			this.xSzybkość = 0;
+			this.ySzybkość = 5;
+		} else if (kierunek === "lewa") {
+			this.xSzybkość = -5;
+			this.ySzybkość = 0;
+		} else if (kierunek === "prawa") {
+			this.xSzybkość = 5;
+			this.ySzybkość = 0;
+		} else if (kierunek === "stop") {
+			this.xSzybkość = 0;
+			this.ySzybkość = 0;
+		}
+	};
+
+// Utwórz obiekt piłka
+	var piłka = new Piłka();
+
+// Obiekt do przekształcania kodów klawiszy na nazwy działań
+	var działaniaKlawiszy = {
+		32: "stop",
+		37: "lewa",
+		38: "góra",
+		39: "prawa",
+		40: "dół"
+	};
+
+// Funkcja obsługi zdarzenia keydown,
+// wywoływana dla każdego naciśnięcia klawisza
+	$("body").keydown(function (zdarzenie) {
+		var kierunek = działaniaKlawiszy[zdarzenie.keyCode];
+		piłka.ustawKierunek(kierunek);
+	});
+
+// Funkcja odpowiedzialna za animację, wywoływana co 30 ms
+	setInterval(function () {
+		ctx.clearRect(0, 0, szerokość, wysokość);
+
+		piłka.rysuj();
+		piłka.przesuwaj();
+
+		ctx.strokeRect(0, 0, szerokość, wysokość);
+	}, 30);
+
+    </script>
+</body>
+</html>

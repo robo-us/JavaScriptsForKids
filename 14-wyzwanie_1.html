@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wyzwanie 1 - zwiększnie canvy</title>
+</head>
+
+<body>
+	<canvas id="canva" width="600" height="600"></canvas>
+	<script>
+		var canva = document.getElementById("canva");
+		var ctx = canva.getContext("2d");
+		// dodajemy zmienne pobierające szerokość i wysokość z elementu canvas
+		var szerokosc = canva.width;
+		var wysokosc = canva.height;
+		
+		var Pilka = function () {
+			this.x = 100;
+			this.y = 100;
+			this.xPredkosc = -2;
+			this.yPredkosc = 3;
+		};
+		
+		var okrag = function (x, y, promien, wypelnijOkrag) {
+			ctx.beginPath();
+			ctx.arc(x, y, promien, 0, Math.PI * 2, false);
+			if (wypelnijOkrag) {
+				ctx.fill();
+			} else {
+				ctx.stroke();
+			}
+		};
+		
+		Pilka.prototype.rysuj = function () {
+			okrag(this.x, this.y, 3, true);
+		};
+
+		Pilka.prototype.ruch = function () {
+			this.x += this.xPredkosc;
+			this.y += this.yPredkosc;
+		};
+		
+		Pilka.prototype.sprawdzKolizje = function () {
+			if (this.x < 0 || this.x > szerokosc) {		// tutaj pamiętamy aby sprawdzać prawą stronę ekranu
+				this.xPredkosc = -this.xPredkosc;
+			}
+			if (this.y < 0 || this.y > wysokosc) {		// tutaj pamiętamy aby sprawdzać dół ekranu
+				this.yPredkosc = -this.yPredkosc;
+			}
+		};
+		
+		var pilka = new Pilka();
+		
+		setInterval(function () {
+			ctx.clearRect(0, 0, szerokosc, wysokosc);	// czyścimy ekran o nowych rozmiarach
+			pilka.rysuj();
+			pilka.ruch();
+			pilka.sprawdzKolizje();
+			ctx.strokeRect(0, 0, szerokosc, wysokosc)	// rysujemy ekran o nowych rozmiarach
+		}, 30);
+	</script>
+</body>
+</html>

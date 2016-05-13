@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Przypisanie kodów do nazw klawiszy</title>
+</head>
+<body>
+	<p>Kliknij na stronie aby widać było w konsoli klawisze</p>
+    <canvas id="canva" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+    <script>
+		var nazwaKlawisza = {
+			32: "spacja",
+			37: "lewy",
+			38: "góra",
+			39: "prawy",
+			40: "dół"
+		};
+		$("body").keydown(function (zdarzenie) {
+		console.log(nazwaKlawisza[zdarzenie.keyCode]);
+		});
+    </script>
+</body>
+</html>
